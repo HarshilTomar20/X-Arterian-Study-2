@@ -1,0 +1,5 @@
+- HTMl -> Hyper Text Markup Language
+- Syntexitical Language, Simple and Declarative Language
+- <body> is the visible stuff
+- off the <head>, the only thing visible is favicon and <title>
+- <meta> holds meta data / data about the webpage

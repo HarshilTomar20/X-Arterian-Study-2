@@ -1,6 +1,8 @@
-const express = require("express");
+// Node.js is an open-source, cross-platform JavaScript runtime environment
+// Asynchronous and Event-Driven
+// Single-Threaded Model, Rich Ecosystem, Real-Time Applications: 
 
-const app = express();
+const express = require("express");
 const PORT = 3000;
 
 // function summy(n) {
@@ -19,40 +21,57 @@ const PORT = 3000;
 //     res.send(`Hi your answer is ${ans}`);
 // })
 
-var users = [{
-    name: 'Gambit',
-    kidney: [{
-        healthy1: true
-    }, {
-        healthy2: true
-    }]
-}];
+const express = require("express");
+const app = express();
 
-app.get("/", function(req, res) {
-    const KidneyInfo = users[0].kidney;
-    const noOfKidneys = KidneyInfo.length;
+const users = [
+  {
+    name: "Johny DoePoeSoe",
+    healthyKidney: 1,
+    unhealthyKidney: 1,
+    totalKindey: 2,
+  },
+];
+
+app.use(express.json());
+
+app.get("/", function (req, res) {
+  const healthystuff = users[0].healthyKidney;
+  const unhealthystuff = users[0].unhealthyKidney;
+  const totalstuff = users[0].totalKindey;
+  res.json({
+    healthystuff,
+    unhealthystuff,
+    totalstuff,
+  });
+});
+
+app.post("/", function (req, res) {
+  const healthystuff = req.body.healthyKidney || 0;
+  while (healthystuff > 0) {
+    users[0].unhealthyKidney--;
+    users[0].healthyKidney++;
+    healthystuff--;
+  }
+  res.json({
+    message: "Operation done boi!",
+  });
+});
+
+app.delete("/", function (req, res) {
+  if (users[0].unhealthyKidney > 0) {
+    users[0].unhealthyKidney = 0;
+
     res.json({
-        KidneyInfo,
-        noOfKidneys
+      message: "Deleted Broski",
     });
-});
-
-app.post("/", function(req, res) {
-    const isHealthy = req.body.isHealthy;
-    users[0].kidney.push({
-        kidney: isHealthy
+  } else {
+    res.json({
+      message: "Bro is all healthy",
     });
-
-});
-
-app.put("/", function(req, res) {
-
-});
-
-app.delete("/", function(req, res) {
-
+  }
 });
 
 app.listen(PORT, ()=> {
-    console.log(`Listening in PORT: ${PORT}`)
-})
+    console.log(`Listening on PORT: ${PORT}`)
+});

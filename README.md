@@ -4,5 +4,4 @@
 - JS
 
 # Project 1
-![alt text](image.png)# X-Arterian-Study
-
+![alt text](image.png)

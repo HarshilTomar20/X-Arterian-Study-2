@@ -1,0 +1,12 @@
+{
+  "name": "restfulapi",
+  "version": "1.0.0",
+  "description": "- Representational State Transfer (REST) is an architectural style for designing web services that emphasize scalability, simplicity, and reliability. RESTful APIs follow a set of principles and best practices to create consistent and maintainable APIs. Let's explore how to design and build RESTful APIs using Express.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

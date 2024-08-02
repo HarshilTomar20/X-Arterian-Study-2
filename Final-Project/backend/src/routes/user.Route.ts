@@ -34,7 +34,7 @@ router.post("/register", async (req: Request, res: Response) => {
     const newUser = new User({ email, username, password: hashedPassword});
     await newUser.save();
 
-    res.status(200).json({
+    return res.status(200).json({
         message: `Sign up Successfull for: ${newUser}`
     })
 });
@@ -63,10 +63,10 @@ router.post("/signin", async (req: Request, res: Response) => {
 
         //@ts-ignore
         const { password, ...others } = user._doc;
-        res.status(200).json({ user: others });
+        return res.status(200).json({ user: others });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 })
 

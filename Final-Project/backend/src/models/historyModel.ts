@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const listSchema = new mongoose.Schema(
+interface IHistorySchema extends Document {
+  title: string;
+  body: string;
+  user: mongoose.Types.ObjectId[];
+  createdAt: Date;
+}
+
+const historySchema: Schema<IHistorySchema> = new Schema(
   {
     title: {
       type: String,
@@ -16,8 +23,14 @@ const listSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    createdAt: {
+      type: Date,
+      expires: 604800,
+      default: Date.now,
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("List", listSchema);
+const History = mongoose.model<IHistorySchema>("List", historySchema);
+export default History;

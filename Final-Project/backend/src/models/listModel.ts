@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const listSchema = new mongoose.Schema(
+
+interface IListSchema extends Document {
+  title: string;
+  body: string;
+  user: mongoose.Types.ObjectId[]; // Array of ObjectId references
+}
+
+const listSchema: Schema<IListSchema> = new Schema(
   {
     title: {
       type: String,
@@ -17,7 +24,9 @@ const listSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true } 
 );
 
-module.exports = mongoose.model("List", listSchema);
+
+const List = mongoose.model<IListSchema>("List", listSchema);
+export default List;
